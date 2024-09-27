@@ -3,6 +3,8 @@ import {
   createOrderCtrl,
   getOrdersCtrl,
 } from "../controllers/order.controller.js";
+import { applyValidations } from "../validations/apply.validations.js";
+import { ordersValidations } from "../validations/orders.validations.js";
 
 const ordersRouter = Router();
 
@@ -10,6 +12,6 @@ const ordersRouter = Router();
 ordersRouter.get("/", getOrdersCtrl);
 
 // ! FALTAN VALIDACIONES DE DATOS
-ordersRouter.post("/", createOrderCtrl);
+ordersRouter.post("/",ordersValidations, applyValidations, createOrderCtrl);
 
 export { ordersRouter };
